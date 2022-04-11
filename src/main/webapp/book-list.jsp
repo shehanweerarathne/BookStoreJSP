@@ -19,8 +19,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark"
-         style="background-color: tomato">
+    <nav class="navbar navbar-expand-md navbar-dark">
         <div>
             <a href="https://www.google.com" class="navbar-brand"> Book Store App </a>
         </div>
@@ -64,9 +63,8 @@
                     <td><c:out value="${book.author}" /></td>
                     <td><c:out value="${book.genre}" /></td>
                     <td><c:out value="${book.price}" /></td>
-                    <td><a href="edit?id=<c:out value='${book.id}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="delete?id=<c:out value='${book.id}' />">Delete</a></td>
+                    <td><a href="edit?id=<c:out value='${book.id}' />">Edit</a></td>
+                    &nbsp;<td><a href="delete?id=<c:out value='${book.id}' />">Delete</a></td>
                 </tr>
             </c:forEach>
             <!-- } -->
