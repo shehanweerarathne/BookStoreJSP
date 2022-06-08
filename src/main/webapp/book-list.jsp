@@ -21,7 +21,7 @@
 <header>
     <nav class="navbar navbar-expand-md navbar-dark">
         <div>
-            <a href="https://www.google.com" class="navbar-brand"> Book Store App </a>
+            <a href="#" class="navbar-brand"> Book Store App </a>
         </div>
 
         <ul class="navbar-nav">
@@ -64,7 +64,7 @@
                     <td><c:out value="${book.genre}" /></td>
                     <td><c:out value="${book.price}" /></td>
                     <td><a href="edit?id=<c:out value='${book.id}' />">Edit</a></td>
-                    &nbsp;<td><a href="delete?id=<c:out value='${book.id}' />">Delete</a></td>
+                    &nbsp;<td><a href="delete?id=<c:out value='${book.id}' />" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
                 </tr>
             </c:forEach>
             <!-- } -->

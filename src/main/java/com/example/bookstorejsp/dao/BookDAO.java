@@ -15,7 +15,7 @@ public class BookDAO {
 
     private static final String INSERT_BOOKS_SQL = "INSERT INTO books" + "  (title,author,genre,price) VALUES " + " (?, ?, ?, ?);";
     private static final String SELECT_BOOK_BY_ID = "select id,title,author,genre,price from books where id =?";
-    private static final String SELECT_ALL_BOOKS = "select * from books";
+    private static final String SELECT_ALL_BOOKS = "select * from books order by id";
     private static final String DELETE_BOOKS_SQL = "delete from books where id = ?;";
     private static final String UPDATE_BOOKS_SQL = "update books set title = ?,author = ?,genre = ?,price = ? where id = ?;";
 
@@ -66,16 +66,12 @@ public class BookDAO {
     }
     public Book selectBook(int id) {
         Book book = null;
-        // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
-             // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BOOK_BY_ID);) {
             preparedStatement.setInt(1, id);
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
 
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 String title = rs.getString("title");
                 String author = rs.getString("author");
@@ -90,18 +86,13 @@ public class BookDAO {
     }
     public List<Book> selectAllBooks() {
 
-        // using try-with-resources to avoid closing resources (boiler plate code)
         List<Book> books = new ArrayList<>();
-        // Step 1: Establishing a Connection
         try (Connection connection = getConnection();
 
-             // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_BOOKS);) {
             System.out.println(preparedStatement);
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
 
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String title = rs.getString("title");
